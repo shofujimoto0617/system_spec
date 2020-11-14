@@ -4,6 +4,7 @@ describe 'タスク管理機能', type: :system do
   let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com') }
   let(:user_b) { FactoryBot.create(:user, name: 'ユーザーB', email: 'b@example.com') }
   let!(:task_a) { FactoryBot.create(:task, name: '最初のタスク', user: user_a) }
+  let!(:task_b) { FactoryBot.create(:task, name: 'Bのタスク', user: user_b) }
 
   before do
   	visit new_user_session_path
@@ -80,7 +81,19 @@ describe 'タスク管理機能', type: :system do
   	  end
 
   	  it '遷移できる' do
-  	  	expect(current_path).to eq('/tasks/' + task_a.id.to_s + '/edit')
+  	  	expect(edit_task_path(task_a)).to eq('/tasks/' + task_a.id.to_s + '/edit')
+  	  end
+  	end
+
+  	context '他人の投稿の編集画面への遷移' do
+  	  let(:login_user) { user_a }
+
+  	  before do
+  		visit edit_task_path(task_b)
+  	  end
+
+  	  it '遷移できない' do
+  		expect(current_path).to eq('/tasks')
   	  end
   	end
   end
