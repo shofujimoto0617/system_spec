@@ -57,7 +57,7 @@ describe 'タスク管理機能', type: :system do
   	  let(:task_name) { '新規作成のテストを書く' }
 
   	  it '正常に登録される' do
-  	  	expect(page).to have_selector '.alert-success', text: '新規作成のテストを書く'
+  	  	expect(page).to have_content '新規作成のテストを書く'
   	  end
   	end
 

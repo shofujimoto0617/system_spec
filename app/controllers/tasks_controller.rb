@@ -6,8 +6,11 @@ class TasksController < ApplicationController
   def create
   	@task = Task.new(task_params)
   	@task.user_id = current_user.id
-  	@task.save
-  	redirect_to tasks_path
+  	if @task.save
+  	  redirect_to tasks_path, notice: "success to #{@task.name}"
+  	else
+  	  render :new
+  	end
   end
 
   def index
