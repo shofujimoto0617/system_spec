@@ -70,4 +70,18 @@ describe 'タスク管理機能', type: :system do
   	  end
   	end
   end
+
+  describe '編集機能' do
+  	context '自分の投稿画面への遷移' do
+  	  let(:login_user) { user_a }
+
+  	  before do
+  	  	visit edit_task_path(task_a)
+  	  end
+
+  	  it '遷移できる' do
+  	  	expect(current_path).to eq('/tasks/' + task_a.id.to_s + '/edit')
+  	  end
+  	end
+  end
 end

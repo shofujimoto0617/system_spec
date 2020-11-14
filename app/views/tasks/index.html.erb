@@ -5,6 +5,7 @@
 <% @tasks.each do |task| %>
   <%= task.name %>
   <%= task.description %>
+  <%= link_to 'Show', task_path(task) %>
 <% end %>
 
 <%= link_to 'New', new_task_path, class: 'btn btn-primary' %>
