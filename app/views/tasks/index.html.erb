@@ -1,5 +1,7 @@
 <h1>tasks index</h1>
 
+<%= link_to 'Log_out', destroy_user_session_path, method: :delete %>
+
 <% @tasks.each do |task| %>
   <%= task.name %>
   <%= task.description %>
