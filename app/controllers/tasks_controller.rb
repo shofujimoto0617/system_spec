@@ -14,6 +14,10 @@ class TasksController < ApplicationController
   	@tasks = current_user.tasks
   end
 
+  def show
+  	@task = Task.find(params[:id])
+  end
+
   private
 
   def task_params
